@@ -1,0 +1,69 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+}
+
+const { title, description, date } = Astro.props;
+
+const formatDate = (date: Date) => {
+  return date.toISOString().split('T')[0];
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title} | Shreyas Nikte</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-neutral-950 text-neutral-300 font-sans antialiased selection:bg-emerald-500/30">
+    <div class="min-h-screen flex flex-col">
+      <!-- Header -->
+      <header class="border-b border-neutral-800">
+        <div class="max-w-2xl mx-auto px-6 py-4">
+          <a href="/" class="text-emerald-400 hover:text-emerald-300 transition-colors">
+            ← back
+          </a>
+        </div>
+      </header>
+
+      <!-- Article -->
+      <main class="flex-1 py-12">
+        <article class="max-w-2xl mx-auto px-6">
+          <header class="mb-8 pb-8 border-b border-neutral-800">
+            <p class="text-neutral-500 text-sm mb-2">{formatDate(date)}</p>
+            <h1 class="text-2xl text-neutral-100 font-bold mb-2">{title}</h1>
+            <p class="text-neutral-400">{description}</p>
+          </header>
+          
+          <div class="prose prose-invert prose-neutral prose-sm max-w-none
+            prose-headings:text-neutral-100 prose-headings:font-bold
+            prose-h1:text-xl prose-h2:text-lg prose-h3:text-base
+            prose-p:text-neutral-300 prose-p:leading-relaxed
+            prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:underline
+            prose-strong:text-neutral-100
+            prose-code:text-emerald-400 prose-code:bg-neutral-900 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+            prose-pre:bg-neutral-900 prose-pre:border prose-pre:border-neutral-800
+            prose-ul:text-neutral-300 prose-ol:text-neutral-300
+            prose-li:marker:text-neutral-600">
+            <slot />
+          </div>
+        </article>
+      </main>
+
+      <!-- Footer -->
+      <footer class="border-t border-neutral-800 py-6">
+        <div class="max-w-2xl mx-auto px-6 text-center">
+          <p class="text-neutral-600 text-sm">© 2026 shreyas nikte</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

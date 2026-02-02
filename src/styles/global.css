@@ -1,1 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Recursive:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Recursive", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", ui-monospace, monospace;
+}
+

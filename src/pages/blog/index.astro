@@ -1,0 +1,63 @@
+---
+import "../../styles/global.css";
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const formatDate = (date: Date) => date.toISOString().split('T')[0];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Blog posts by Shreyas Nikte" />
+    <title>writing | shreyas nikte</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-neutral-950 text-neutral-300 font-sans antialiased selection:bg-emerald-500/30">
+    <div class="min-h-screen flex flex-col">
+      <!-- Header -->
+      <header class="border-b border-neutral-800">
+        <div class="max-w-2xl mx-auto px-6 py-4">
+          <a href="/" class="text-emerald-400 hover:text-emerald-300 transition-colors">
+            ← back
+          </a>
+        </div>
+      </header>
+
+      <!-- Main -->
+      <main class="flex-1 max-w-2xl mx-auto px-6 py-12 w-full">
+        <h1 class="text-neutral-100 text-xl mb-8">Writing</h1>
+        
+        {posts.length > 0 ? (
+          <ul class="space-y-4">
+            {posts.map((post) => (
+              <li>
+                <a 
+                  href={`/blog/${post.id}`}
+                  class="group block"
+                >
+                  <span class="text-neutral-600 text-sm mr-3">{formatDate(post.data.date)}</span>
+                  <span class="text-neutral-100 group-hover:text-emerald-400 transition-colors">{post.data.title}</span>
+                  <p class="text-neutral-500 text-sm mt-1 ml-[5.5rem]">{post.data.description}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="text-neutral-600">no posts yet.</p>
+        )}
+      </main>
+
+      <!-- Footer -->
+      <footer class="border-t border-neutral-800 py-6">
+        <div class="max-w-2xl mx-auto px-6 text-center">
+          <p class="text-neutral-600 text-sm">© 2026 shreyas nikte</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
