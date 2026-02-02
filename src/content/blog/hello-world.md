@@ -19,4 +19,4 @@ I plan to write about:
 
 ## Another attempt
 
-I tried blogging before. I abandoned the efforts after a while as life happens. Ultimately, erasing the entire blog. This time it is different: I might not write consistently this time around. But this blog will stay.
+I tried blogging before. I abandoned the efforts after a while as life happened. Ultimately, erasing the entire blog. This time it is different: I might not write consistently this time around. But this blog will stay.
